@@ -1,8 +1,10 @@
 package minesweeper;
 
-
-
-public class Cell 
+/**
+ *
+ * Clase Casilla
+ */
+public class Casilla 
 {
     private boolean mine;
 
@@ -14,7 +16,7 @@ public class Cell
      *  a number ranging from 0 to 8 - indicating the number of surrounding mines
      */
 
-    //Only the content of the Cell is visible to the player.
+    //Only the content of the Casilla is visible to the player.
     private String content;
 
     //Number of adjacent surrounding mines
@@ -23,7 +25,11 @@ public class Cell
     
     //----------------------------------------------------------//
 
-    public Cell()
+    /**
+     * Metodo constructor
+     */
+
+    public Casilla()
     {
         mine = false;
         content = "";

@@ -6,8 +6,11 @@ import java.awt.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
-
-public class UI extends JFrame
+/**
+ * Clase Interfaz.
+ * @author 
+ */
+public class Interfaz extends JFrame
 {
     // The buttons
     private JButton[][] buttons;
@@ -51,7 +54,14 @@ public class UI extends JFrame
     
     
     //---------------------------------------------------------------//
-    public UI(int r, int c, int m)
+
+    /**
+     * Metodo Constructor UI
+     * @param r
+     * @param c
+     * @param m
+     */
+    public Interfaz(int r, int c, int m)
     {                
         this.rows = r;
         this.cols = c;
@@ -156,15 +166,15 @@ public class UI extends JFrame
         //------------------Menu--------------------------//
         menuBar = new JMenuBar();
         
-        gameMenu = new JMenu("Game");
+        gameMenu = new JMenu("Juego");
          
-        newGame = new JMenuItem("   New Game");
-        statistics = new JMenuItem("   Statistics");
-        exit = new JMenuItem("   Exit");
+        newGame = new JMenuItem("   Nueva Partida");
+        statistics = new JMenuItem("   Estadisticas");
+        exit = new JMenuItem("   Salir");
 
-        newGame.setName("New Game");
-        statistics.setName("Statistics");
-        exit.setName("Exit");
+        newGame.setName("Nueva Partida");
+        statistics.setName("Estadisticas");
+        exit.setName("Salir");
 
         gameMenu.add(newGame);
         gameMenu.add(statistics);
@@ -204,7 +214,9 @@ public class UI extends JFrame
 
     //-----------------------Related to Timer------------------------//
     
-    // Starts the timer
+    /**
+     * Metodo que empieza el contador de tiempo
+     */
     public void startTimer()
     {        
         stopTimer = false;
@@ -232,7 +244,9 @@ public class UI extends JFrame
        timer.start();
     }
 
-    
+    /**
+     * Metodo que interrumpen el contador de tiempo
+     */
     public void interruptTimer()
     {
         stopTimer = true;
@@ -248,6 +262,9 @@ public class UI extends JFrame
         }        
     }
     
+    /**
+     * Resetear contador de tiempo
+     */
     public void resetTimer()
     {
         timePassed = 0;
@@ -271,7 +288,9 @@ public class UI extends JFrame
     
     //------------------HELPER FUNCTIONS-----------------------//
 
-    //Makes buttons clickable
+    /**
+     * Makes buttons clickable
+     */
     public void enableAll()
     {
         for( int x=0 ; x<cols ; x++ ) 
@@ -283,7 +302,9 @@ public class UI extends JFrame
         }
     }
 
-    //Makes buttons non-clickable
+    /**
+     * Makes buttons non-clickable
+     */
     public void disableAll()
     {
         for( int x=0 ; x<cols ; x++ ) 
@@ -295,8 +316,9 @@ public class UI extends JFrame
         }
     }
 
-
-    //Resets the content of all buttons
+    /**
+     * Resets the content of all buttons
+     */
     public void hideAll()
     {
         for( int x=0 ; x<cols ; x++ ) 
@@ -312,8 +334,12 @@ public class UI extends JFrame
 
     
     //---------------SET LISTENERS--------------------------//
-    
-    public void setButtonListeners(Game game)
+
+    /**
+     * Metodo.
+     * @param game
+     */
+    public void setButtonListeners(Juego game)
     {
         addWindowListener(game);
     
@@ -338,12 +364,21 @@ public class UI extends JFrame
     
     
     //-----------------GETTERS AND SETTERS--------------------//
+
+    /**
+     *
+     * @return buttons
+     */
     
     public JButton[][] getButtons()
     {
         return buttons;
     }
     
+    /**
+     *
+     * @return timePassed
+     */
     public int getTimePassed()
     {
         return timePassed;
@@ -351,6 +386,11 @@ public class UI extends JFrame
 
 
     //----------------------SET LOOK------------------------------//
+
+    /**
+     *
+     * @param look
+     */
     
     public static void setLook(String look)
     {
@@ -367,31 +407,46 @@ public class UI extends JFrame
     }
 
     //-------------------------------------------------------------//
-    
+
+    /**
+     * 
+     * @param m
+     */
     public void setMines(int m)
     {
         mines = m;
         minesLabel.setText("  " + Integer.toString(m) + "  ");
     }
     
+    /**
+     * aumenta minas
+     */
     public void incMines()
     {
         mines++;
         setMines(mines);
     }
     
+    /**
+     * disminuye minas
+     */
     public void decMines()
     {
         mines--;
         setMines(mines);
     }
     
+    /**
+     *
+     * @return mines
+     */
     public int getMines()
     {
         return mines;
     }
-            
     //--------------------Related to Icons----------------------------//
+    
+    
     private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) 
     {
         Image img = icon.getImage();  
@@ -399,6 +454,9 @@ public class UI extends JFrame
         return new ImageIcon(resizedImage);
     }    
     
+    /**
+     * Metodo setIcons
+     */
     public void setIcons()
     {
        //---------------------Set Icons-----------------------------//
@@ -425,21 +483,37 @@ public class UI extends JFrame
         
     }
     
+    /**
+     *
+     * @return mine
+     */
     public Icon getIconMine()
     {
         return mine;
     }
 
+    /**
+     *
+     * @return redMine
+     */
     public Icon getIconRedMine()
     {
         return redMine;
     }
     
+    /**
+     *
+     * @return flag
+     */
     public Icon getIconFlag()
     {
         return flag;
     }
     
+    /**
+     *
+     * @return tile
+     */
     public Icon getIconTile()
     {
         return tile;       

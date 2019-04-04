@@ -12,8 +12,11 @@ import java.sql.Statement;
 import java.util.Collections;
 import java.util.Comparator;
 
-
-public class Score
+/**
+ * Clase Puntuacion
+ * @author
+ */
+public class Puntuacion
 {
     ArrayList<Time> bestTimes;
     
@@ -28,23 +31,37 @@ public class Score
     int currentWinningStreak;
     int currentLosingStreak;
     
-    public Score()
+    /**
+     * Constructor
+     */
+    public Puntuacion()
     {
         gamesPlayed = gamesWon = currentStreak = longestLosingStreak = longestWinningStreak = currentWinningStreak = currentLosingStreak = 0;
         bestTimes = new ArrayList();
     }
     
-    
+    /**
+     * Metodo que retorna las partidas jugadas.
+     * @return gamesPlayed
+     */
     public int getGamesPlayed()
     {
         return gamesPlayed;        
     }
     
+    /**
+     * Metodo que retorna las partidas ganadas.
+     * @return gamesWon
+     */
     public int getGamesWon()
     {        
         return gamesWon;
     }
     
+    /**
+     * Metodo que retorna el porcentaje de victorias.
+     * @return percentage
+     */
     public int getWinPercentage()
     {
         double gP = gamesPlayed;
@@ -55,45 +72,77 @@ public class Score
         return (int)percentage;
     }
     
+    /**
+     * Metodo que retorna la mayor racha de victorias
+     * @return longestWinningStreak
+     */
     public int getLongestWinningStreak()
     {
         return longestWinningStreak;
     }
     
+    /**
+     * 
+     * @return longestLosingStreak
+     */
     public int getLongestLosingStreak()
     {
         return longestLosingStreak;
     }
     
+    /**
+     *
+     * @return currentStreak
+     */
     public int getCurrentStreak()
     {
         return currentStreak;
     }
     
+    /**
+     *
+     * @return currentLosingStreak
+     */
     public int getCurrentLosingStreak()
     {
         return currentLosingStreak;
     }
-
+    
+    /**
+     *
+     * @return currentWinningStreak
+     */
     public int getCurrentWinningStreak(){
         return currentWinningStreak;
     }
     
+    /**
+     * Aumenta partidas ganadas en 1.
+     */
     public void incGamesWon()
     {
         gamesWon++;
     }
     
+    /**
+     * Aumenta partidas jugadas en 1.
+     */
     public void incGamesPlayed()
     {
         gamesPlayed++;
     }
     
+    /**
+     * Aumenta el valor de racha actual
+     */
     public void incCurrentStreak()
     {
         currentStreak++;
     }
     
+    /**
+     * Aumenta el valor de racha de derrotas
+     */
     public void incCurrentLosingStreak()
     {
         currentLosingStreak++;
@@ -104,6 +153,9 @@ public class Score
         }                
     }
 
+    /**
+     * Aumenta la racha de victorias
+     */
     public void incCurrentWinningStreak()
     {
         currentWinningStreak++;
@@ -114,26 +166,36 @@ public class Score
         }                
     }
     
-    
+    /**
+     * Disminuye la racha actual
+     */ 
     public void decCurrentStreak()
     {        
         currentStreak--;
     }    
     
-    
+    /**
+     * Reinicia puntuación
+     */
     public void resetScore()
     {
         gamesPlayed = gamesWon = currentStreak = longestLosingStreak = longestWinningStreak = currentWinningStreak = currentLosingStreak = 0;
     }
     
-    
-    
+    /**
+     *
+     * @return bestTimes
+     */
     public ArrayList<Time> getBestTimes()
     {
         return bestTimes;
     }
         
-    
+    /**
+     * Aumenta tiempo
+     * @param time
+     * @param date
+     */
     public void addTime(int time, Date date)
     {
         bestTimes.add(new Time(time,date));
@@ -149,6 +211,11 @@ public class Score
     //------------DATABASE--------------------------//
     
     //------------POPULATE FROM DATABASE------------//
+
+    /**
+     *
+     * @return boolean
+     */
     public boolean populate()
     {
         Connection connection = null;
@@ -156,7 +223,7 @@ public class Score
         ResultSet resultSet = null;
 
         try {
-            String dbURL = Game.dbPath; 
+            String dbURL = Juego.dbPath; 
 
             connection = DriverManager.getConnection(dbURL); 
             statement = connection.createStatement();
@@ -213,7 +280,9 @@ public class Score
         }
     }
 
-    
+    /**
+     * Guardar
+     */
     public void save()
     {
         Connection connection = null;
@@ -221,7 +290,7 @@ public class Score
         
 
         try {
-            String dbURL = Game.dbPath; 
+            String dbURL = Juego.dbPath; 
             
             connection = DriverManager.getConnection(dbURL); 
 
@@ -281,6 +350,10 @@ public class Score
     
     
     //---------------------------------------------------//
+
+    /**
+     * Clase comparador de tiempo
+     */
     public class TimeComparator implements Comparator<Time>
     {
         @Override
@@ -295,21 +368,38 @@ public class Score
     }
 
     //----------------------------------------------------------//
+
+    /**
+     * Clase Tiempo
+     */
     public class Time{
         Date date;
         int time;
         
+        /**
+         * Tiempo
+         * @param t
+         * @param d
+         */
         public Time(int t, Date d)
         {
             time = t;
             date = d;
         }
         
+        /**
+         *
+         * @return date
+         */
         public Date getDateValue()
         {
             return date;
         }
         
+        /**
+         *
+         * @return time
+         */
         public int getTimeValue()
         {
             return time;
